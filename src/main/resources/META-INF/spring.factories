@@ -1,0 +1,5 @@
+#for handle events to load custom properties file
+org.springframework.context.ApplicationListener=\
+com.dionext.libjobspringstarter.autoconfigure.properties.StarterApplicationListener
+
+
