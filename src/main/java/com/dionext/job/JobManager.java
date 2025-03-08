@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;
@@ -35,7 +34,7 @@ public class JobManager {
 
     @PostConstruct
     void postConstruct() {
-        Collection<JobInstance> jobsFromDb = jobInstanceRepository.findAll();
+       // Collection<JobInstance> jobsFromDb = jobInstanceRepository.findAll();
         //todo resume jobs
 
     }

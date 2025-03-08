@@ -1,4 +1,4 @@
-package com.dionext.libjobspringstarter.autoconfigure.properties;
+package com.dionext.libjobspringstarter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;

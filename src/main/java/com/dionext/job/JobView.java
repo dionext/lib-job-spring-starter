@@ -44,12 +44,12 @@ public class JobView {
 
     static public String makeJobInfoBlock(JobManager jobManager, JobService jobService,  String jobTypeId, String jobId) {
         JobInstance jobInstance = null;
-        JobType jobType = null;
+        //JobType jobType = null;
         if (jobId != null) {
             jobInstance = jobManager.getJobInstance(jobId);
             if (jobTypeId == null) jobTypeId = jobInstance.getJobTypeId();
         }
-        if (jobTypeId != null) jobType = jobManager.getJobType(jobTypeId);
+        //if (jobTypeId != null) jobType = jobManager.getJobType(jobTypeId);
 
         StringBuilder str = new StringBuilder();
         str.append("<div>");
