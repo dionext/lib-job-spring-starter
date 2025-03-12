@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
+@Table(name = "jobinstance")
 public class JobInstance {
     @Column
     @Id

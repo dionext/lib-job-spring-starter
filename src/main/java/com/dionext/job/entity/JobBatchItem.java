@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Table(name = "jobbatchitem")
 public class JobBatchItem {
     @EmbeddedId
     private JobBatchItemId id;

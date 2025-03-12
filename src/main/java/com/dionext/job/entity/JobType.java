@@ -7,6 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "jobtype")
 public class JobType {
     @Column
     @Id

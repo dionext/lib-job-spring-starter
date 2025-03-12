@@ -17,19 +17,19 @@ public class JobView {
         Collection<JobType> jobTypeList = jobManager.getJobTypeList();
         for (JobType jobType : jobTypeList) {
             str.append(MessageFormat.format("""
-                        <li><a href="/job/info?job-type-id={0}">{1}<a></li>
+                        <li><a href="/admin/job/info?job-type-id={0}">{1}<a></li>
                     """, jobType.getJobTypeId(), jobType.getName()));
             Collection<JobInstance> jobInstances = jobManager.getJobInstances(jobType.getJobTypeId());
             if (!jobInstances.isEmpty()) {
                 str.append("<ul>");
                 for (JobInstance jobInstance : jobInstances) {
                     str.append(MessageFormat.format("""
-                                <li><a href="/job/info?job-id={0}">{0}<a> {1} {2}</li>
+                                <li><a href="/admin/job/info?job-id={0}">{0}<a> {1} {2}</li>
                             """, jobInstance.getJobId(),
                             jobInstance.getJobState(),
                             jobInstance.getFinishedTime()));
                     //str.append(MessageFormat.format("""
-                    //          <a href="/job/cancel?job-id={0}"> [Cancel]<a></li>
+                    //          <a href="/admin/job/cancel?job-id={0}"> [Cancel]<a></li>
                     //    """, jobInstance.getJobId()));
                     str.append("</li>");
                 }
@@ -66,7 +66,7 @@ public class JobView {
         //div
         if (jobInstance != null && jobInstance.getJobState() == JobState.RUNNING) {
             str.append(MessageFormat.format("""
-                      <div hx-trigger="done" hx-get="/job/completed?job-id={0}&job-type-id={1}" hx-swap="outerHTML" hx-target="this">
+                      <div hx-trigger="done" hx-get="/admin/job/completed?job-id={0}&job-type-id={1}" hx-swap="outerHTML" hx-target="this">
                     """, jobInstance.getJobId(), jobInstance.getJobTypeId()));
         }
         else {
@@ -113,7 +113,7 @@ public class JobView {
             str.append("<h3>Running...</h3>");
             str.append(MessageFormat.format("""
                       <div
-                        hx-get="/job/progress?job-id={0}"
+                        hx-get="/admin/job/progress?job-id={0}"
                         hx-trigger="every 600ms"
                         hx-target="this"
                         hx-swap="innerHTML">
@@ -128,7 +128,7 @@ public class JobView {
         str.append("<div>");
         if (jobInstance == null){
             str.append(MessageFormat.format("""
-            <form hx-post="/job/run?job-type-id={0}" hx-swap="outerHTML">
+            <form hx-post="/admin/job/run?job-type-id={0}" hx-swap="outerHTML">
                     """, jobTypeId
             ));
             str.append("<h3>Run...</h3>");
@@ -145,7 +145,7 @@ public class JobView {
             if (jobInstance.getJobState() == JobState.RUNNING) {
                 //cancel button
                 str.append(MessageFormat.format("""
-                          <button class="btn btn-primary" hx-post="/job/cancel?job-id={0}"">
+                          <button class="btn btn-primary" hx-post="/admin/job/cancel?job-id={0}"">
                              Cancel Job
                           </button>
                         """,  jobInstance.getJobId()
@@ -155,7 +155,7 @@ public class JobView {
                     || jobInstance.getJobState() == JobState.CANCELLED
             ) {
                 str.append(MessageFormat.format("""
-            <form hx-post="/job/run?job-type-id={0}&job-id={1}"  hx-swap="outerHTML">
+            <form hx-post="/admin/job/run?job-type-id={0}&job-id={1}"  hx-swap="outerHTML">
                     """, jobInstance.getJobTypeId(), jobInstance.getJobId()
                 ));
                 str.append("<h3>Run...</h3>");
